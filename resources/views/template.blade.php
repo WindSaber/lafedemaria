@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta name="description" content="La Fe de Maria Nos Une">
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <title>@yield('titulo')</title>
+        {!! HTML::style('css/bootstrap/bootstrap.min.css') !!}
+        {!! HTML::style('css/bootstrap/bootstrap-theme.min.css') !!}
+        @yield('afterCss')
+    </head>
+    <body ng-app="feDeMariaApp">
+        <!--JS de Angular-->
+        {!! HTML::script('js/angular/angular.min.js') !!}
+        {!! HTML::script('js/angular-app/app.js') !!}
+        {!! HTML::script('js/angular-app/InstruccionesCtrl.js') !!}
+        @yield('angularScripts')
+        
+        @include('template.navbar')
+        
+        @yield('contenido')
+        @include('template.footer')
+        
+        <!--Seccion de js-->
+        {!! HTML::script('js/jquery/jquery-2.1.4.min.js') !!}
+        {!! HTML::script('js/bootstrap/bootstrap.min.js') !!}
+        @yield('afterScripts')
+    </body>
+</html>
