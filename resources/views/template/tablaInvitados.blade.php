@@ -1,6 +1,7 @@
 <table class='table'>
     <thead>
         <tr>
+            @if(in_array('username',$display))<th>Username</th>@endif
             @if(in_array('nombre',$display))<th>Nombre</th>@endif
             @if(in_array('apellidoPaterno',$display))<th>Apellido Paterno</th>@endif
             @if(in_array('apellidoMaterno',$display))<th>Apellido Materno</th>@endif
@@ -15,7 +16,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="inv in invitados">
-            @if(in_array('nombre',$display))<td>{{inv.datos_personales.nombre}}</td>@endif
+            @if(in_array('username',$display))<td>{{inv.username}}</td>@endif
             @if(in_array('apellidoPaterno',$display))<td>{{inv.datos_personales.apellido_paterno}}</td>@endif
             @if(in_array('apellidoMaterno',$display))<td>{{inv.datos_personales.apellido_materno}}</td>@endif
             @if(in_array('ubicacion',$display))<td>{{inv.ubicacion.nombre}}</td>@endif

@@ -8,8 +8,8 @@ class Integrante extends Model{
     public function datos_personales()    {
         return $this->belongsTo('App\Models\DatosPersonales');
     }
-    public function ubicacion_responsable()    {
-        return $this->belongsTo('App\Models\Ubicacion');
+    public function ubicacion()    {
+        return $this->belongsTo('App\Models\Ubicacion','ubicacion_responsable');
     }
     public function rol()    {
         return $this->belongsTo('App\Models\Rol');

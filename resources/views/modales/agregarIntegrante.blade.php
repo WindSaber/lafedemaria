@@ -9,6 +9,10 @@
             <div class="modal-body">
                 <table class='table'>
                     <tr>
+                        <td>Username</td>
+                        <td><input class='form-control' ng-model='invitado.username'/></td>
+                    </tr>
+                    <tr>
                         <td>Nombre</td>
                         <td><input class='form-control' ng-model='invitado.datos_personales.nombre'/></td>
                     </tr>

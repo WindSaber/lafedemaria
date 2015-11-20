@@ -5,7 +5,7 @@
 <script>
     var rutaInvitado = "[[route('integrante')]]";
     var rutaubicacion = "[[route('ubicacion')]]";
-    var rutaformaPago = "[[route('formaPago')]]";
+//    var rutaformaPago = "[[route('formaPago')]]";
     var rutarol = "[[route('rol')]]";
 </script>
 @stop
@@ -14,7 +14,7 @@
 <div ng-controller='invitados.InvitadosCtrl' ng-init='recargaInvitados();'>
     <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
         <button class='btn btn-primary'  data-toggle="modal" data-target="#modalAgregarInvitado" ng-click='nuevoInvitado()'>Agregar integrante</button>
-        @include('template.tablaInvitados',['display'=>['nombre','apellidoPaterno','apellidoMaterno','ubicacion',
+        @include('template.tablaInvitados',['display'=>['username','nombre','apellidoPaterno','apellidoMaterno','ubicacion',
             'invImpresa','invEntregada','invAceptada','observaciones','acciones']])
     </div>
     @include('modales.agregarIntegrante')

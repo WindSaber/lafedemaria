@@ -10,7 +10,7 @@ class IntegrantesController extends Controller{
         return Response::view('integrantes.principal');
     }
     public function findAll(){
-        $integrantes = Integrante::with('datos_personales','rol','ubicacion_responsable')->get();
+        $integrantes = Integrante::with('datos_personales','rol','ubicacion')->get();
         return Response::json($integrantes);
     }
     public function save(){
@@ -18,6 +18,7 @@ class IntegrantesController extends Controller{
         $datosPersonales = DatosPersonales::firstOrCreate($integrante['datos_personales']);
         $integrante['datos_personales_id'] = $datosPersonales->id;
         if($integrante['addOrEdit']=="add"){
+            $integrante['password'] = sha1($integrante['password']);
             return Response::json(Integrante::create($integrante));
         }else{//If is edit
             $inv = Integrante::find($integrante['id']);

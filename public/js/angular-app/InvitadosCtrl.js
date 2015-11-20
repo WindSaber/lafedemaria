@@ -10,13 +10,18 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             console.log('Error');
         });
     }
-    $scope.nuevoInvitado = function() {
-        console.log('En nuevo invitado');
+    function cargaCatalogosModal(){
         cargaCatalogo('ubicacion');
-        cargaCatalogo('formaPago');
         if(typeof rutarol !== 'undefined'){
             cargaCatalogo('rol');
         }
+        if(typeof rutaformaPago !== 'undefined'){
+            cargaCatalogo('formaPago');
+        }
+    }
+    $scope.nuevoInvitado = function() {
+        console.log('En nuevo invitado');
+        cargaCatalogosModal();
         $scope.invitado = {};
         $scope.addOrEdit = "add";
         $scope.addOrEditTitle = "Agregar";
@@ -24,8 +29,7 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
     }
     $scope.modificarInvitado = function(invitado) {
         console.log('En Modificar invitado');
-        cargaCatalogo('ubicacion');
-        cargaCatalogo('formaPago');
+        cargaCatalogosModal();
         $scope.invitado = invitado;
         $scope.addOrEdit = "edit";
         $scope.addOrEditTitle = "Editar";
@@ -65,7 +69,11 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
         if ($scope.addOrEdit === "add") {
             switch (tipoCatalogo) {
                 case 'ubicacion':
-                    $scope.invitado.ubicacion_id = $scope.ubicacions[0].id;
+                    if(typeof rutarol !== 'undefined'){
+                        $scope.invitado.ubicacion_responsable = $scope.ubicacions[0].id;
+                    }else{
+                        $scope.invitado.ubicacion_id = $scope.ubicacions[0].id;
+                    } 
                     break;
                 case 'formaPago':
                     $scope.invitado.forma_pago_id = $scope.formaPagos[0].id;
