@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="modalAgregarInvitado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalIniciarSesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +10,7 @@
                 <table class='table'>
                     <tr>
                         <td>Nombre</td>
-                        <td><input class='form-control' ng-model='invitado.datos_personales.nombre'/></td>
+                        <td><input class='form-control' ng-model='integrante.datos_personales.nombre'/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
@@ -18,7 +18,6 @@
                     </tr>
                 </table>
             </div>
-            <pre>{{invitado}}</pre>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" 
