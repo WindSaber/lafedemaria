@@ -17,6 +17,7 @@
     <tbody>
         <tr ng-repeat="inv in invitados">
             @if(in_array('username',$display))<td>{{inv.username}}</td>@endif
+            @if(in_array('nombre',$display))<td>{{inv.datos_personales.nombre}}</td>@endif
             @if(in_array('apellidoPaterno',$display))<td>{{inv.datos_personales.apellido_paterno}}</td>@endif
             @if(in_array('apellidoMaterno',$display))<td>{{inv.datos_personales.apellido_materno}}</td>@endif
             @if(in_array('ubicacion',$display))<td>{{inv.ubicacion.nombre}}</td>@endif
@@ -24,6 +25,9 @@
             @if(in_array('invEntregada',$display))<td>{{inv.invitacion_entregada || "No"}}</td>@endif
             @if(in_array('invAceptada',$display))<td>{{inv.invitacion_aceptada || "No"}}</td>@endif
             @if(in_array('observaciones',$display))<td>{{inv.observaciones}}</td>@endif
+            @if(in_array('acciones',$display))
+                <td><button class='btn btn-primary' ng-hide='inv.invitacion_impresa==="SI"'     ng-click="modificarInvitado(inv)">Modificar</button></td>
+            @endif
             @if(in_array('invitaciones',$display))
                     <td><button class='btn btn-primary' ng-hide='inv.invitacion_impresa==="SI"'     ng-click="statusInvitacion($index,'impresa','SI')">Impresa</button></td>
                     <td><button class='btn btn-warning' ng-hide='inv.invitacion_entregada==="SI"'   ng-click="statusInvitacion($index,'entregada','SI')">Entregada</button></td>
