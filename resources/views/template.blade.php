@@ -10,15 +10,18 @@
     </head>
     <body ng-app="feDeMariaApp">
         <!--JS de Angular-->
+        <script>var baseUrl = '[[route("inicio")]]/';</script>
         {!! HTML::script('js/angular/angular.min.js') !!}
         {!! HTML::script('js/angular-app/app.js') !!}
         {!! HTML::script('js/angular-app/InstruccionesCtrl.js') !!}
+        {!! HTML::script('js/angular-app/SecurityCtrl.js') !!}
         @yield('angularScripts')
         
         @include('template.navbar')
         
         @yield('contenido')
         @include('template.footer')
+        @include('modales.iniciarSesion')
         
         <!--Seccion de js-->
         {!! HTML::script('js/jquery/jquery-2.1.4.min.js') !!}

@@ -51,8 +51,8 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Bienvenido: fulanito</a></li>
-                <li><a href="#">Iniciar sesi&oacute;n</a></li>
-                <li><a href="#">Cerrar sesi&oacute;n</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modalIniciarSesion" >Iniciar sesi&oacute;n</a></li>
+                <li><a href="#"  >Cerrar sesi&oacute;n</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
