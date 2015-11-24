@@ -18,8 +18,6 @@ Route::get('/',['as'=>'inicio', function () {
     return view('inicio');
 }]);
 
-Route::post('login',['as'=>'login', 'uses'=>'LoginController@login']);
-
 Route::group(['prefix' => 'invitados'], function () {
     Route::get('principal',['as'=>'invitadosPrincipal', 'uses'=>'InvitadosController@principal']);
     Route::get('invitados',['as'=>'invitados', 'uses'=>'InvitadosController@findAll']);

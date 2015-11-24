@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use Log;
-use Hash;
 use Response;
 use Request;
 use App\Models\DatosPersonales;
@@ -19,7 +18,7 @@ class IntegrantesController extends Controller{
         $datosPersonales = DatosPersonales::firstOrCreate($integrante['datos_personales']);
         $integrante['datos_personales_id'] = $datosPersonales->id;
         if($integrante['addOrEdit']=="add"){
-            $integrante['password'] = Hash::make($integrante['password']);
+            $integrante['password'] = sha1($integrante['password']);
             return Response::json(Integrante::create($integrante));
         }else{//If is edit
             $inv = Integrante::find($integrante['id']);
