@@ -19,6 +19,7 @@ Route::get('/',['as'=>'inicio', function () {
 }]);
 
 Route::post('login',['as'=>'login', 'uses'=>'LoginController@login']);
+Route::get('logout',['as'=>'logout', 'uses'=>'LoginController@logout']);
 
 Route::group(['prefix' => 'invitados'], function () {
     Route::get('principal',['as'=>'invitadosPrincipal', 'uses'=>'InvitadosController@principal']);
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'integrantes'], function () {
     Route::get('integrante',['as'=>'integrante', 'uses'=>'IntegrantesController@principal']);
     Route::post('integrante',['uses'=>'IntegrantesController@save']);
 });
-Route::group(['prefix' => 'catalogos'], function () {
+Route::group(['prefix' => 'catalogos', 'middleware'=>'auth'], function () {
     Route::get('formasPago',['as'=>'formasPago', 'uses'=>'CatalogosController@formasPagoView']);
     Route::get('formaPago',['as'=>'formaPago', 'uses'=>'CatalogosController@getAllFormasPago']);
     Route::post('formaPago','CatalogosController@addFormaPago');

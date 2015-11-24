@@ -1,3 +1,4 @@
+
 <!-- Modal -->
 <div class="modal fade" id="modalIniciarSesion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="SecurityCtrl">
     <div class="modal-dialog" role="document">
@@ -10,15 +11,14 @@
                 <table class='table'>
                     <tr>
                         <td>Username</td>
-                        <td><input class='form-control' ng-model='credentials.username'/></td>
+                        <td><input class='form-control' id='username' ng-model='credentials.username' ng-enter='autenticar()'/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input class='form-control' type="password" ng-model='credentials.password'/></td>
+                        <td><input class='form-control' id='password' type="password" ng-enter='autenticar()' ng-model='credentials.password'/></td>
                     </tr>
                 </table>
             </div>
-            <pre>{{credentials}}</pre>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary"  ng-click="autenticar()">Guardar</button>

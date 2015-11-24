@@ -32,6 +32,7 @@
                 </li>
                 <li><a href="#">Integrantes</a></li>
                 <li><a href="#">Proveedores</a></li>
+                @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cat&aacute;logos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -46,13 +47,16 @@
                         <li><a href="#">Cotizaciones</a></li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Bienvenido: fulanito</a></li>
+                @if(Auth::check())
+                <li><a href="#">Bienvenido: [[Auth::user()->datos_personales->nombre]]</a></li>
+                <li><a href="[[route('logout')]]">Cerrar sesi&oacute;n</a></li>
+                @else
                 <li><a href="#" data-toggle="modal" data-target="#modalIniciarSesion" >Iniciar sesi&oacute;n</a></li>
-                <li><a href="#"  >Cerrar sesi&oacute;n</a></li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
