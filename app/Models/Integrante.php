@@ -13,7 +13,7 @@ class Integrante extends Model implements AuthenticatableContract,
     use Authenticatable, Authorizable, CanResetPassword;
     public $table = 'integrante';
     public $fillable = ['datos_personales_id','rol_id','ubicacion_responsable','celular',
-        'telefono','facebook','password'];
+        'telefono','facebook','password','username'];
     public function datos_personales()    {
         return $this->belongsTo('App\Models\DatosPersonales');
     }

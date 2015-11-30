@@ -2,6 +2,13 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
     $scope.invitados = [];
     $scope.addOrEdit = "add";
     $scope.botonSaveDisabled = false;
+    $('#modalAgregarInvitado').on('shown.bs.modal', function() {
+        if (typeof rutarol !== 'undefined') {
+            $('#usernameM').focus();
+        }else{
+            $('#nombreM').focus();
+        }
+    });
     $scope.recargaInvitados = function() {
         $http.get(rutaInvitado + "s").then(function(response) {
             console.log(response.data);
@@ -10,12 +17,12 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             console.log('Error');
         });
     }
-    function cargaCatalogosModal(){
+    function cargaCatalogosModal() {
         cargaCatalogo('ubicacion');
-        if(typeof rutarol !== 'undefined'){
+        if (typeof rutarol !== 'undefined') {
             cargaCatalogo('rol');
         }
-        if(typeof rutaformaPago !== 'undefined'){
+        if (typeof rutaformaPago !== 'undefined') {
             cargaCatalogo('formaPago');
         }
     }
@@ -41,6 +48,8 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
         } else {
             $scope.crearInvitado();
         }
+        
+
     }
     $scope.crearInvitado = function() {
         var url = rutaInvitado;
@@ -50,14 +59,14 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             console.log(response);
             $scope.invitados.push(response.data);
             $scope.recargaInvitados();
-            alert('guardado');
+            $('#modalAgregarInvitado').modal('toggle');
         }, function(response) {
             console.log('Error');
         });
     };
-    $scope.statusInvitacion = function(index,invitacion,status){
-        var url = rutaInvitado+"/invitacion";
-        eval("$scope.invitados[index].invitacion_"+invitacion+"=status;");
+    $scope.statusInvitacion = function(index, invitacion, status) {
+        var url = rutaInvitado + "/invitacion";
+        eval("$scope.invitados[index].invitacion_" + invitacion + "=status;");
         var post = $scope.invitados[index];
         console.log(post);
         $http.post(url, post).then(function(response) {
@@ -69,11 +78,11 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
         if ($scope.addOrEdit === "add") {
             switch (tipoCatalogo) {
                 case 'ubicacion':
-                    if(typeof rutarol !== 'undefined'){
+                    if (typeof rutarol !== 'undefined') {
                         $scope.invitado.ubicacion_responsable = $scope.ubicacions[0].id;
-                    }else{
+                    } else {
                         $scope.invitado.ubicacion_id = $scope.ubicacions[0].id;
-                    } 
+                    }
                     break;
                 case 'formaPago':
                     $scope.invitado.forma_pago_id = $scope.formaPagos[0].id;

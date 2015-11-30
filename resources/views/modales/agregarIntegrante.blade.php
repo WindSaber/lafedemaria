@@ -10,7 +10,7 @@
                 <table class='table'>
                     <tr>
                         <td>Username</td>
-                        <td><input class='form-control' ng-model='invitado.username'/></td>
+                        <td><input class='form-control' id="usernameM" ng-model='invitado.username'/></td>
                     </tr>
                     <tr>
                         <td>Nombre</td>

@@ -30,7 +30,7 @@
         <script>
             $('#modalIniciarSesion').on('shown.bs.modal', function() {
                 $('#username').focus();
-            })
+            });
         </script>
         @yield('afterScripts')
     </body>
