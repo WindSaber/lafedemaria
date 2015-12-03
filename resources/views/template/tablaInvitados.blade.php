@@ -78,8 +78,8 @@
         <tr ng-repeat="inv in invitados |orderBy:sortKey:reverse
             @if(in_array('username',$display))           |filter:{username:buscar.username} @endif
             @if(in_array('nombre',$display))             |filter:{datos_personales:{nombre:buscar.nombre}} @endif
-            @if(in_array('apellidoPaterno',$display))    |filter:{datos_personales:{nombre:buscar.apellido_paterno}} @endif
-            @if(in_array('apellidoMaterno',$display))    |filter:{datos_personales:{nombre:buscar.apellido_materno}} @endif
+            @if(in_array('apellidoPaterno',$display))    |filter:{datos_personales:{apellido_paterno:buscar.apellido_paterno}} @endif
+            @if(in_array('apellidoMaterno',$display))    |filter:{datos_personales:{apellido_materno:buscar.apellido_materno}} @endif
             @if(in_array('ubicacion',$display))          |filter:{ubicacion:{nombre:buscar.ubicacion}} @endif
             @if(in_array('invImpresa',$display))         |filter:{invitacion_impresa:buscar.invitacion_impresa} @endif   
             @if(in_array('invEntregada',$display))       |filter:{invitacion_entregada:buscar.invitacion_entregada} @endif
