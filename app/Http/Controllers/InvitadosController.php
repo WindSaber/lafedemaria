@@ -36,4 +36,8 @@ class InvitadosController extends Controller{
         $inv->save();
         return Response::json($inv);
     }
+    
+    public function registrarPago(){
+        return Response::view('invitados.registrarPago');
+    }
 }

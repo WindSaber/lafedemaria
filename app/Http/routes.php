@@ -22,16 +22,19 @@ Route::post('login',['as'=>'login', 'uses'=>'LoginController@login']);
 Route::get('logout',['as'=>'logout', 'uses'=>'LoginController@logout']);
 
 Route::group(['prefix' => 'invitados'], function () {
-    Route::get('principal',['as'=>'invitadosPrincipal', 'uses'=>'InvitadosController@principal']);
+    Route::get('principal',['as'=>'invitadosPrincipal', 'middleware'=>'auth', 'uses'=>'InvitadosController@principal']);
     Route::get('invitados',['as'=>'invitados', 'uses'=>'InvitadosController@findAll']);
     Route::get('invitado',['as'=>'invitado', 'uses'=>'InvitadosController@principal']);
     Route::post('invitado',['uses'=>'InvitadosController@save']);
     Route::get('invitaciones',['as'=>'invitaciones', 'uses'=>'InvitadosController@invitaciones']);
+    //|-----Invitaciones------//
     Route::post('invitado/invitacion',['uses'=>'InvitadosController@invitacion']);
+    //|-----Pagos------//
+    Route::get('registrarPago',['as'=>'registrarPago', 'middleware'=>'auth', 'uses'=>'InvitadosController@registrarPago']);
 });
 
 Route::group(['prefix' => 'integrantes'], function () {
-    Route::get('principal',['as'=>'integrantesPrincipal', 'uses'=>'IntegrantesController@principal']);
+    Route::get('principal',['as'=>'integrantesPrincipal', 'middleware'=>'auth', 'uses'=>'IntegrantesController@principal']);
     Route::get('integrantes',['as'=>'integrantes', 'uses'=>'IntegrantesController@findAll']);
     Route::get('integrante',['as'=>'integrante', 'uses'=>'IntegrantesController@principal']);
     Route::post('integrante',['uses'=>'IntegrantesController@save']);

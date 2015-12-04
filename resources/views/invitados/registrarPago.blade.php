@@ -4,17 +4,17 @@
 {!! HTML::script('js/angular-app/InvitadosCtrl.js') !!}
 <script>
     var rutaInvitado = "[[route('invitado')]]";
-    var rutaubicacion = "[[route('ubicacion')]]";
-    var rutaformaPago = "[[route('formaPago')]]";
 </script>
 @stop
 
 @section('contenido')
 <div ng-controller='invitados.InvitadosCtrl' ng-init='recargaInvitados();'>
-    <div class='col-md-12 col-sm-12 col-xs-12 col-lg-12'>
-        <button class='btn btn-primary'  data-toggle="modal" data-target="#modalAgregarInvitado" ng-click='nuevoInvitado()'>Agregar invitado</button>
+    <div class='col-md-9 col-sm-9 col-xs-9 col-lg-9'>
         @include('template.tablaInvitados',['display'=>['nombre','apellidoPaterno','apellidoMaterno','ubicacion',
-            'invImpresa','invEntregada','invAceptada','invitaciones','acciones']])
+            'invAceptada','registrarPago']])
+    </div>
+    <div class='col-md-3 col-sm-3 col-xs-3 col-lg-3'>
+        @include('invitados.panelRegistrarPago')
     </div>
     @include('modales.agregarInvitado')
 </div>
