@@ -40,4 +40,8 @@ class InvitadosController extends Controller{
     public function registrarPago(){
         return Response::view('invitados.registrarPago');
     }
+    public function registraPago(){
+        Request::file('comprobante')->move('../storage/comprobantes','ajuas.png');
+        return Response::json("ok");
+    }
 }

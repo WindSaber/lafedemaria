@@ -16,6 +16,8 @@
         {!! HTML::script('js/angular-app/Directivas.js') !!}
         {!! HTML::script('js/angular-app/InstruccionesCtrl.js') !!}
         {!! HTML::script('js/angular-app/SecurityCtrl.js') !!}
+        {!! HTML::script('js/angular-libs/ng-file-upload-shim.js') !!}
+        {!! HTML::script('js/angular-libs/ng-file-upload.js') !!}
         @yield('angularScripts')
 
         @include('template.navbar')

@@ -1,11 +1,15 @@
-feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, $http) {
+feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, $http, Upload, $timeout) {
     $scope.invitados = [];
+    $scope.invitadoSelected = null;
     $scope.addOrEdit = "add";
+    $scope.result = "";
     $scope.botonSaveDisabled = false;
+    $scope.forceDisabled = false;
+    $scope.panelRegistrarPagoVisible = false;
     $('#modalAgregarInvitado').on('shown.bs.modal', function() {
         if (typeof rutarol !== 'undefined') {
             $('#usernameM').focus();
-        }else{
+        } else {
             $('#nombreM').focus();
         }
     });
@@ -48,7 +52,7 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
         } else {
             $scope.crearInvitado();
         }
-        
+
 
     }
     $scope.crearInvitado = function() {
@@ -105,5 +109,49 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             console.log('Error');
         });
     }
-
+    $scope.showPanelRegistrarPago = function(invitado) {
+        $scope.panelRegistrarPagoVisible = true;
+        $scope.invitadoSelected = invitado;
+        $scope.result = "Esperando a que ingrese los datos..."
+//        $scope.movimiento = {fecha:"",monto:-1};
+    };
+    $scope.esMovimientoValido = function() {
+        var result = true;
+        try {
+            if ($scope.invitadoSelected === null) {
+                result = false;
+            }
+            if ($scope.movimiento.fecha === "") {
+                result = false;
+            }
+            if (isNaN($scope.movimiento.monto) || $scope.movimiento.monto < 0) {
+                result = false;
+            }
+            if($scope.forceDisabled !== false){
+                return false;
+            }
+            return result;
+        } catch (error) {
+            return false;
+        }
+    };
+    $scope.registraPago = function(comprobante) {
+        $scope.result = "Espere un momento por favor, cargando... "
+        $scope.forceDisabled = true;
+        $scope.movimiento.invitado = $scope.invitadoSelected;
+        comprobante.upload = Upload.upload({
+            url: 'registraPago',
+            data: {comprobante: comprobante, movimiento: $scope.movimiento},
+        });
+        comprobante.upload.then(function(response) {
+            $scope.movimiento = {};
+            $scope.invitadoSelected = {};
+            $scope.panelRegistrarPagoVisible = false;
+            alert('Pago registrado correctamente');
+        }, function(response) {
+            $scope.result = 'Error al hacer la carga, intente nuevamente';
+        }, function(evt) {
+            $scope.result = "Carga completada"
+        });
+    }
 });

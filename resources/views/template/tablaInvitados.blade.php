@@ -13,6 +13,7 @@
             @if(in_array('acciones',$display))<th></th>@endif
             @if(in_array('invitaciones',$display))<th colspan="3"></th>@endif
             @if(in_array('registrarPago',$display))<th></th>@endif
+            @if(in_array('consultarPagos',$display))<th></th>@endif
         </tr>
     </thead>
     <thead>
@@ -74,6 +75,7 @@
             @if(in_array('acciones',$display))<th></th>@endif
             @if(in_array('invitaciones',$display))<th colspan="3"></th>@endif
             @if(in_array('registrarPago',$display))<th></th>@endif
+            @if(in_array('consultarPagos',$display))<th></th>@endif
         </tr>
     </thead>
     <tbody>
@@ -90,6 +92,7 @@
             @if(in_array('acciones',$display))@endif
             @if(in_array('invitaciones',$display))@endif
             @if(in_array('registrarPago',$display))@endif
+            @if(in_array('consultarPagos',$display))@endif
             ">
             @if(in_array('username',$display))<td>{{inv.username}}</td>@endif
             @if(in_array('nombre',$display))<td>{{inv.datos_personales.nombre}}</td>@endif
@@ -111,6 +114,9 @@
             @endif
             @if(in_array('registrarPago',$display))
             <td><button class='btn btn-success' ng-click="showPanelRegistrarPago(inv)">Registrar <i class='glyphicon glyphicon-usd'></i></button></td>
+            @endif
+            @if(in_array('consultarPagos',$display))
+            <td><button class='btn btn-info' ng-click="showPanelRegistrarPago(inv)">Consultar <i class='glyphicon glyphicon-usd'></i></button></td>
             @endif
         </tr>
     </tbody>

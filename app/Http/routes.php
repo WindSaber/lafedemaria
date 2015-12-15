@@ -31,6 +31,7 @@ Route::group(['prefix' => 'invitados'], function () {
     Route::post('invitado/invitacion',['uses'=>'InvitadosController@invitacion']);
     //|-----Pagos------//
     Route::get('registrarPago',['as'=>'registrarPago', 'middleware'=>'auth', 'uses'=>'InvitadosController@registrarPago']);
+    Route::post('registraPago',['as'=>'registraPago', 'middleware'=>'auth', 'uses'=>'InvitadosController@registraPago']);
 });
 
 Route::group(['prefix' => 'integrantes'], function () {

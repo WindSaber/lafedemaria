@@ -1,4 +1,4 @@
-var feDeMariaApp = angular.module("feDeMariaApp", []);
+var feDeMariaApp = angular.module("feDeMariaApp", ['ngFileUpload']);
 
 feDeMariaApp.directive('ngEnter', function() {
     return function(scope, element, attrs) {
