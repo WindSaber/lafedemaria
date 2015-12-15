@@ -116,7 +116,7 @@
             <td><button class='btn btn-success' ng-click="showPanelRegistrarPago(inv)">Registrar <i class='glyphicon glyphicon-usd'></i></button></td>
             @endif
             @if(in_array('consultarPagos',$display))
-            <td><button class='btn btn-info' ng-click="showPanelRegistrarPago(inv)">Consultar <i class='glyphicon glyphicon-usd'></i></button></td>
+            <td><button class='btn btn-info' data-toggle="modal" data-target="#modalHistoricoPagosInvitado" ng-click="cargaDatosHistoricoPagos(inv)">Consultar <i class='glyphicon glyphicon-usd'></i></button></td>
             @endif
         </tr>
     </tbody>

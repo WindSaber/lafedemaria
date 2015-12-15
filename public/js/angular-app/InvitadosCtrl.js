@@ -154,4 +154,8 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             $scope.result = "Carga completada"
         });
     }
+    $scope.cargaDatosHistoricoPagos = function(invitado){
+        $scope.invitadoSelected = invitado;
+        $scope.historicoPagos={};
+    }
 });
