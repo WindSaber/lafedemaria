@@ -112,6 +112,7 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
     $scope.showPanelRegistrarPago = function(invitado) {
         $scope.panelRegistrarPagoVisible = true;
         $scope.invitadoSelected = invitado;
+        $scope.forceDisabled = false;
         $scope.result = "Esperando a que ingrese los datos..."
 //        $scope.movimiento = {fecha:"",monto:-1};
     };
@@ -149,6 +150,7 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             $scope.panelRegistrarPagoVisible = false;
             alert('Pago registrado correctamente');
         }, function(response) {
+            $scope.forceDisabled = false;
             $scope.result = 'Error al hacer la carga, intente nuevamente';
         }, function(evt) {
             $scope.result = "Carga completada"

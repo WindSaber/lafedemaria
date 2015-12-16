@@ -1,47 +1,66 @@
 <?php
+
 namespace App\Http\Controllers;
+
+use Carbon\Carbon;
 use Log;
 use Response;
 use Request;
 use App\Models\DatosPersonales;
 use App\Models\Invitado;
-class InvitadosController extends Controller{
-    public function principal(){
+use App\Models\Movimiento;
+
+class InvitadosController extends Controller {
+
+    public function principal() {
         return Response::view('invitados.principal');
     }
-    public function findAll(){
-        $invitados = Invitado::with('datos_personales','forma_pago','ubicacion')->get();
+
+    public function findAll() {
+        $invitados = Invitado::with('datos_personales', 'forma_pago', 'ubicacion')->get();
         return Response::json($invitados);
     }
-    public function save(){
+
+    public function save() {
         $invitado = Request::all();
         $datosPersonales = DatosPersonales::firstOrCreate($invitado['datos_personales']);
         $invitado['datos_personales_id'] = $datosPersonales->id;
-        if($invitado['addOrEdit']=="add"){
+        if ($invitado['addOrEdit'] == "add") {
             return Response::json(Invitado::create($invitado));
-        }else{//If is edit
+        } else {//If is edit
             $inv = Invitado::find($invitado['id']);
             $inv->fill($invitado);
             $inv->save();
             return Response::json($inv);
         }
     }
-    public function invitaciones(){
+
+    public function invitaciones() {
         return Response::view('invitados.invitaciones');
     }
-    public function invitacion(){
+
+    public function invitacion() {
         $invitado = Request::all();
         $inv = Invitado::find($invitado['id']);
         $inv->fill($invitado);
         $inv->save();
         return Response::json($inv);
     }
-    
-    public function registrarPago(){
+
+    public function registrarPago() {
         return Response::view('invitados.registrarPago');
     }
-    public function registraPago(){
-        Request::file('comprobante')->move('../storage/comprobantes','ajuas.png');
-        return Response::json("ok");
+
+    public function registraPago() {
+        try {
+            $arrMovimiento = Movimiento::crearArrayMovimientoConInvitadoyFecha(Request::get('movimiento'));
+            $movimiento = Movimiento::create($arrMovimiento);
+            Request::file('comprobante')->move('../storage/comprobantes', $movimiento->id . "." .Request::file('comprobante')->guessExtension());
+            return Response::json("ok");
+        } catch (Exception $ex) {
+            Log::error($ex->getMessage());
+            abort(500);
+        }
     }
+
 }
