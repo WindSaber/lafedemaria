@@ -32,6 +32,7 @@ Route::group(['prefix' => 'invitados'], function () {
     //|-----Pagos------//
     Route::get('registrarPago',['as'=>'registrarPago', 'middleware'=>'auth', 'uses'=>'InvitadosController@registrarPago']);
     Route::post('registraPago',['as'=>'registraPago', 'middleware'=>'auth', 'uses'=>'InvitadosController@registraPago']);
+    Route::post('historicoPagosPlain',['as'=>'historicoPagosPlain', 'middleware'=>'auth', 'uses'=>'InvitadosController@historicoPagosPlain']);
 });
 
 Route::group(['prefix' => 'integrantes'], function () {

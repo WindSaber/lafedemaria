@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="r in historicoPagos | orderBy: fecha">
-                            <td>{{r.fecha}}</td>
+                            <td>{{(r.fecha).slice(0,10) | date:"dd/MM/yyyy"}}</td>
                             <td>{{r.monto}}</td>
                             <td>{{r.observaciones}}</td>
                             <td>

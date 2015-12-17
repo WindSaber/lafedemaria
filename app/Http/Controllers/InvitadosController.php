@@ -55,12 +55,18 @@ class InvitadosController extends Controller {
         try {
             $arrMovimiento = Movimiento::crearArrayMovimientoConInvitadoyFecha(Request::get('movimiento'));
             $movimiento = Movimiento::create($arrMovimiento);
-            Request::file('comprobante')->move('../storage/comprobantes', $movimiento->id . "." .Request::file('comprobante')->guessExtension());
+//            Request::file('comprobante')->move('../storage/comprobantes', $movimiento->id . "." .Request::file('comprobante')->guessExtension());
+            Request::file('comprobante')->move('../storage/comprobantes', $movimiento->id . ".jpg");
             return Response::json("ok");
         } catch (Exception $ex) {
             Log::error($ex->getMessage());
             abort(500);
         }
+    }
+    public function historicoPagosPlain() {
+        $invitado = Request::get('invitado');
+        $movimientos = Movimiento::getAllPagosByInvitadoId($invitado['id']);
+        return Response::json($movimientos);
     }
 
 }

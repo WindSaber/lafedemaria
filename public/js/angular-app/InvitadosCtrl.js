@@ -157,7 +157,15 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
         });
     }
     $scope.cargaDatosHistoricoPagos = function(invitado){
-        $scope.invitadoSelected = invitado;
         $scope.historicoPagos={};
+        $scope.invitadoSelected = invitado;
+        var objPost = {invitado:invitado};
+        var url = baseUrl +"/invitados/historicoPagosPlain";
+        $http.post(url, objPost).then(function(response) {
+            $scope.historicoPagos = response.data;
+        }, function(response) {
+            console.log('Error');
+        });
+        
     }
 });

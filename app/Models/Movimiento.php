@@ -28,7 +28,15 @@ class Movimiento extends Model {
         $arrMovimiento['fecha'] = Carbon::createFromFormat('d/m/Y', $arrMovimiento['fecha']);
         $invitado = $arrMovimiento['invitado'];
         $arrMovimiento['invitado_id'] = $invitado['id'];
+        $arrMovimiento['entrada_salida'] = 'E';
         return $arrMovimiento;
+    }
+    public static function getAllPagosByInvitadoId($idInvitado){
+        return Movimiento::with('invitado','invitado.datos_personales')
+                ->where('invitado_id','=',$idInvitado)
+                ->where('entrada_salida','=','E')
+                ->orderBy('fecha','desc')
+                ->get();
     }
 
 }
