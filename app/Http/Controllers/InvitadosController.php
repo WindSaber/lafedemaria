@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use DB;
 use Log;
 use Response;
 use Request;
@@ -17,7 +18,7 @@ class InvitadosController extends Controller {
     }
 
     public function findAll() {
-        $invitados = Invitado::with('datos_personales', 'forma_pago', 'ubicacion')->get();
+        $invitados = Invitado::with('datos_personales', 'forma_pago', 'ubicacion')->get(['*',DB::raw("coalesce((select sum(monto) from movimiento where entrada_salida = 'E' and invitado_id = invitado.id),0) as aportaciones")]);
         return Response::json($invitados);
     }
 

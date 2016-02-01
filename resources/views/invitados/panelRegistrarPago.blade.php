@@ -7,11 +7,15 @@
         </tr>
         <tr>
             <td>Fecha:</td>
-            <td><input class="form-control" type="text" ng-model="movimiento.fecha"/></td>
+            <td><input  type="text" ng-model="movimiento.fecha" id='fecha' class="form-control datepicker"/></td>
         </tr>
         <tr>
             <td>Monto:</td>
-            <td><input class="form-control" type="text" ng-model="movimiento.monto"/></td>
+            <td><input class="form-control" type="number" ng-model="movimiento.monto"/></td>
+        </tr>
+        <tr>
+            <td>Folio:</td>
+            <td><input class="form-control" type="text" ng-model="movimiento.folio"/></td>
         </tr>
         <tr>
             <td>Observaciones:</td>
@@ -32,4 +36,5 @@
             </td>
         </tr>
     </table>
+    <pre>{{movimiento}}</pre>
 </form>

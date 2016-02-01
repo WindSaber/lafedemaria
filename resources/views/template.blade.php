@@ -29,10 +29,25 @@
         <!--Seccion de js-->
         {!! HTML::script('js/jquery/jquery-2.1.4.min.js') !!}
         {!! HTML::script('js/bootstrap/bootstrap.min.js') !!}
+        {!! HTML::script('js/datepicker/bootstrap-datepicker.min.js') !!}
+        {!! HTML::script('js/datepicker/locales/bootstrap-datepicker.es.min.js') !!}
         <script>
             $('#modalIniciarSesion').on('shown.bs.modal', function() {
                 $('#username').focus();
             });
+            $('.datepicker').datepicker({
+                format: "dd/mm/yyyy",
+                clearBtn: true,
+                language: "es",
+                autoclose: true,
+                todayHighlight: true,
+                onSelect: function(date) {
+                    scope.$apply(function() {
+                        ngModelCtrl.$setViewValue(date);
+                    });
+                }
+            });
+
         </script>
         @yield('afterScripts')
     </body>

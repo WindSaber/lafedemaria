@@ -12,6 +12,7 @@
             @if(in_array('observaciones',$display))<th><input type="text" ng-model="buscar.observaciones" class="form-control" placeholder="Obs."/></th>@endif
             @if(in_array('acciones',$display))<th></th>@endif
             @if(in_array('invitaciones',$display))<th colspan="3"></th>@endif
+            @if(in_array('aportaciones',$display))<th></th>@endif
             @if(in_array('registrarPago',$display))<th></th>@endif
             @if(in_array('consultarPagos',$display))<th></th>@endif
         </tr>
@@ -74,6 +75,7 @@
             @endif
             @if(in_array('acciones',$display))<th></th>@endif
             @if(in_array('invitaciones',$display))<th colspan="3"></th>@endif
+            @if(in_array('aportaciones',$display))<th>Aportaciones</th>@endif
             @if(in_array('registrarPago',$display))<th></th>@endif
             @if(in_array('consultarPagos',$display))<th></th>@endif
         </tr>
@@ -90,6 +92,7 @@
             @if(in_array('invAceptada',$display))        |filter:{invitacion_aceptada:buscar.invitacion_aceptada} @endif 
             @if(in_array('observaciones',$display))      |filter:{observaciones:buscar.observaciones} @endif
             @if(in_array('acciones',$display))@endif
+            @if(in_array('aportaciones',$display))@endif
             @if(in_array('invitaciones',$display))@endif
             @if(in_array('registrarPago',$display))@endif
             @if(in_array('consultarPagos',$display))@endif
@@ -106,6 +109,7 @@
             @if(in_array('acciones',$display))
                 <td><button class='btn btn-primary'  data-toggle="modal" data-target="#modalAgregarInvitado" ng-click="modificarInvitado(inv)">Modificar</button></td>
             @endif
+            @if(in_array('aportaciones',$display))<td>{{inv.aportaciones | currency}}</td>@endif
             @if(in_array('invitaciones',$display))
                     <td><button class='btn btn-primary' ng-hide='inv.invitacion_impresa==="Si"'     ng-click="statusInvitacion($index,'impresa','Si')">Impresa</button></td>
                     <td><button class='btn btn-warning' ng-hide='inv.invitacion_entregada==="Si"'   ng-click="statusInvitacion($index,'entregada','Si')">Entregada</button></td>

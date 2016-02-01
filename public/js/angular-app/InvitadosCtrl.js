@@ -1,4 +1,10 @@
 feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, $http, Upload, $timeout) {
+    $("#fecha").change(function (date) {
+        if(typeof $scope.movimiento === "undefined"){
+            $scope.movimiento = {};
+        }
+        $scope.movimiento.fecha = $("#fecha").val();
+    });
     $scope.invitados = [];
     $scope.invitadoSelected = null;
     $scope.addOrEdit = "add";
@@ -128,7 +134,7 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             if (isNaN($scope.movimiento.monto) || $scope.movimiento.monto < 0) {
                 result = false;
             }
-            if($scope.forceDisabled !== false){
+            if ($scope.forceDisabled !== false) {
                 return false;
             }
             return result;
@@ -156,16 +162,16 @@ feDeMariaApp.controller('invitados.InvitadosCtrl', function($scope, $rootScope, 
             $scope.result = "Carga completada"
         });
     }
-    $scope.cargaDatosHistoricoPagos = function(invitado){
-        $scope.historicoPagos={};
+    $scope.cargaDatosHistoricoPagos = function(invitado) {
+        $scope.historicoPagos = {};
         $scope.invitadoSelected = invitado;
-        var objPost = {invitado:invitado};
-        var url = baseUrl +"/invitados/historicoPagosPlain";
+        var objPost = {invitado: invitado};
+        var url = baseUrl + "/invitados/historicoPagosPlain";
         $http.post(url, objPost).then(function(response) {
             $scope.historicoPagos = response.data;
         }, function(response) {
             console.log('Error');
         });
-        
+
     }
 });

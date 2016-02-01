@@ -10,7 +10,7 @@
                     <ul class="dropdown-menu">
                         <!--<li><a href="#">Listado general</a></li>-->
                         @if(Auth::check() && in_array(Auth::user()->rol->nombre, array("root","administrador","consulta")))<li><a href="[[route('invitaciones')]]">Registro de invitaciones</a></li>@endif
-                        @if(Auth::check() && in_array(Auth::user()->rol->nombre, array("root")))<li><a href="[[route('registrarPago')]]">Registro de pago</a></li>@endif
+                        @if(Auth::check() && in_array(Auth::user()->rol->nombre, array("root","administrador")))<li><a href="[[route('registrarPago')]]">Registro de pago</a></li>@endif
 <!--                        <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Reporte general</a></li>
